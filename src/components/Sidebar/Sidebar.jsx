@@ -43,7 +43,7 @@ const Sidebar = () => {
       link: '/asaprogrammer',
     },
   ]
-  const { handleLogout, isLoggingOut, error } = useLogout()
+  const { handleLogout, isLoggingOut } = useLogout()
 
   return (
     <Box
@@ -134,7 +134,14 @@ const Sidebar = () => {
             justifyContent={{ base: 'center', md: 'flex-start' }}
           >
             <BiLogOut size={25} />
-            <Button display={{ base: 'none', md: 'block' }}>Log out</Button>
+            <Button
+              display={{ base: 'none', md: 'block' }}
+              variant={'ghost'}
+              _hover={{ bg: 'transparent' }}
+              isLoading={isLoggingOut}
+            >
+              Log out
+            </Button>
           </Flex>
         </Tooltip>
       </Flex>
