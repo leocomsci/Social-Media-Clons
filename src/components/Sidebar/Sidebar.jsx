@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Button,
   Link as ChakraLink,
   Flex,
   Tooltip,
@@ -15,6 +16,7 @@ import {
   NotificationsLogo,
   SearchLogo,
 } from '../../assets/constants'
+import useLogout from '../../hooks/useLogout'
 
 const Sidebar = () => {
   const sideBarItems = [
@@ -41,6 +43,7 @@ const Sidebar = () => {
       link: '/asaprogrammer',
     },
   ]
+  const { handleLogout, isLoggingOut, error } = useLogout()
 
   return (
     <Box
@@ -107,6 +110,7 @@ const Sidebar = () => {
             </Tooltip>
           ))}
         </Flex>
+        {/* LOG OUT */}
         <Tooltip
           hasArrow
           label={'Logout'}
@@ -115,10 +119,11 @@ const Sidebar = () => {
           openDelay={500}
           display={{ base: 'block', md: 'none' }}
         >
-          <ChakraLink
-            display={'flex'}
-            to={'/auth'}
-            as={RouterLink}
+          <Flex
+            // display={'flex'}
+            // to={'/auth'}
+            // as={RouterLink}
+            onClick={handleLogout}
             alignItems={'center'}
             gap={4}
             _hover={{ bg: 'whiteAlpha.400' }}
@@ -129,8 +134,8 @@ const Sidebar = () => {
             justifyContent={{ base: 'center', md: 'flex-start' }}
           >
             <BiLogOut size={25} />
-            <Box display={{ base: 'none', md: 'block' }}>Log out</Box>
-          </ChakraLink>
+            <Button display={{ base: 'none', md: 'block' }}>Log out</Button>
+          </Flex>
         </Tooltip>
       </Flex>
     </Box>
