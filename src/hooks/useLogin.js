@@ -15,13 +15,19 @@ const useLogin = () => {
     }
 
     try {
-      const userCred = SignInWithEmailAndPassword(inputs.email, inputs.password)
+      const userCred = await SignInWithEmailAndPassword(
+        inputs.email,
+        inputs.password,
+      )
 
       if (userCred) {
         const docRef = doc(firestore, 'users', userCred.user.uid)
         const docSnap = await getDoc(docRef)
         localStorage.setItem('user-info', JSON.stringify(docSnap.data()))
         loginUser(docSnap.data())
+        {
+          console.log('work?')
+        }
       }
     } catch (error) {
       showToast('Error', error.message, 'error')

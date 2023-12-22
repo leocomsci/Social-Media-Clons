@@ -12,12 +12,10 @@ import useAuthStore from '../store/authStore'
 import useShowToast from './useShowToast'
 
 const useSignUpWithEmailAndPassword = () => {
-  const [createUserWithEmailAndPassword, loading, error] =
+  const [createUserWithEmailAndPassword, , loading, error] =
     useCreateUserWithEmailAndPassword(auth)
-
-  const loginUser = useAuthStore((state) => state.login)
-
   const showToast = useShowToast()
+  const loginUser = useAuthStore((state) => state.login)
 
   const signup = async (inputs) => {
     if (
@@ -59,7 +57,7 @@ const useSignUpWithEmailAndPassword = () => {
           profilePicURL: '',
           followers: [],
           following: [],
-          post: [],
+          posts: [],
           createdAt: Date.now(),
         }
         await setDoc(doc(firestore, 'users', newUser.user.uid), userDoc)
