@@ -1,13 +1,14 @@
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import PageLayout from './Layout/PageLayout/PageLayout'
+import { auth } from './firebase/firebase'
 import AuthPage from './pages/AuthPage/AuthPage'
 import HomePage from './pages/HomePage/HomePage'
 import ProfilePage from './pages/ProfilePage/ProfilePage'
-import useAuthStore from './store/authStore'
 
 function App() {
   // set the initial state where user: null in useAuthStore.js file
-  const authUser = useAuthStore((state) => state.user)
+  const [authUser] = useAuthState(auth)
 
   return (
     <PageLayout>
